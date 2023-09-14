@@ -10,16 +10,17 @@ metadata:
   name: {{ $.Values.name }}
 subjects:
 - kind: {{ $value.subjects.kind | default "ServiceAccount" }}
-  name: {{ $.Values.name }}-{{ $value.subjects.kind | default "sa" }}
+  name: {{ $.Values.name }}-sa
   namespace: {{ $.Values.namespace }}
   apiGroup: {{ $value.subjects.apiGroup | quote }}
 roleRef:
 {{- if $value.scope.cluster }}
   kind: ClusterRole
+  name: {{ $.Values.name }}-clr
 {{- else }}
   kind: Role
+  name: {{ $.Values.name }}-role
 {{- end }}
-  name: {{ $.Values.name }}
   apiGroup: rbac.authorization.k8s.io
 ---
 {{- end }}

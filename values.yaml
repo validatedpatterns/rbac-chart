@@ -21,7 +21,6 @@ roles:
 
 roleBindings:
   - createBinding: true
-# Is this a clusterRoleBinding (default true)
     scope:
       cluster: true
     subjects:
